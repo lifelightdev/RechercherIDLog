@@ -21,4 +21,12 @@ public class ReadFile {
         }
         return resultat;
     }
+
+    public List<String> readAllToURLs(List<File> fichiers) {
+        List<String> resultat = new ArrayList<>();
+        for (File fichier : fichiers){
+            resultat.addAll(readToURLs(fichier));
+        }
+        return resultat;
+    }
 }
