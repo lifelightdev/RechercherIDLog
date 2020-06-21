@@ -37,6 +37,21 @@ class RechercherIdLogApplicationTests {
 		Assertions.assertThat(resultatObtenu).isEqualTo(resultatAttendu);
 	}
 
-
+	@Test
+	void find_max_nb_ID_in_URL_list() {
+		List<String> urls = new ArrayList<>();
+		urls.add("http://a.com?id=43");
+		urls.add("https://test.net?a=1&id=446&b=2&c=3");
+		urls.add("https://test.net?a=1&id=446&b=2&c=3");
+		urls.add("https://test.net?a=1&id=156&b=2&c=3");
+		urls.add("http://bid.org?a=1&id=551");
+		urls.add("http://a.com?id=578");
+		urls.add("https://test.net?a=1&id=446&b=2&c=3");
+		urls.add("http://a.com?id=307");
+		urls.add("http://a.com?id=331");
+		Find find = new Find();
+		Integer resultatObtenu = find.maxNbIDIn(urls);
+		Assertions.assertThat(resultatObtenu).isEqualTo(446);
+	}
 
 }
