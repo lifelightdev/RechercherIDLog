@@ -25,7 +25,20 @@ public class Find {
     public Integer maxNbIDIn(List<String> urls) {
         Map<Integer, Long> nombreIDInt = iDsIn(urls).stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
         Map.Entry<Integer, Long> entryInt = nombreIDInt.entrySet().stream().max(Comparator.comparingLong(Map.Entry::getValue)).get();
-
         return entryInt.getKey();
+    }
+
+    public List<Integer> cinqMaxNbIDIn(List<String> urls) {
+        List<Integer> resultat = new ArrayList<>();
+        Map<Integer, Long> nombreIDInt = iDsIn(urls).stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+        for (int i = 0; i<5; i++){
+            Map.Entry<Integer, Long> entryInt = nombreIDInt.entrySet().stream().max(Comparator.comparingLong(Map.Entry::getValue)).get();
+            resultat.add(entryInt.getKey());
+            nombreIDInt.remove(entryInt.getKey());
+            if (nombreIDInt.isEmpty()){
+                break;
+            }
+        }
+        return resultat;
     }
 }
