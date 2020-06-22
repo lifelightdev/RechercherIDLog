@@ -7,7 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RechercherIdLogApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(RechercherIdLogApplication.class, args);
+		Find find = new Find();
+		find.printFirst();
+
 	}
 
 }
