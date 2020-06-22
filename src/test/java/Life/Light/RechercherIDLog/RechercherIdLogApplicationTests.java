@@ -4,8 +4,10 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @SpringBootTest
 class RechercherIdLogApplicationTests {
@@ -94,6 +96,24 @@ class RechercherIdLogApplicationTests {
 		resultatAttendu.add(446);
 		resultatAttendu.add(551);
 		Assertions.assertThat(resultatObtenu).isEqualTo(resultatAttendu);
+	}
+
+	@Test
+	void find_first_five_plus() {
+
+		ClassLoader classLoader = getClass().getClassLoader();
+		File fichier = new File(Objects.requireNonNull(classLoader.getResource("logs/20130201-0000.log")).getFile());
+		String directory = fichier.getParent();
+		Find find = new Find();
+		List<Integer> resultatObtenu = find.firstOfDirectory(directory);
+		List<Integer> resultatAttendu = new ArrayList<>();
+		resultatAttendu.add(413);
+		resultatAttendu.add(505);
+		resultatAttendu.add(473);
+		resultatAttendu.add(512);
+		resultatAttendu.add(561);
+		Assertions.assertThat(resultatObtenu).isEqualTo(resultatAttendu);
+
 	}
 
 }

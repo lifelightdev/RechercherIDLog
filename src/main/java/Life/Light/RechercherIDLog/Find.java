@@ -3,6 +3,7 @@ package Life.Light.RechercherIDLog;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,4 +42,20 @@ public class Find {
         }
         return resultat;
     }
+
+    public List<Integer> firstOfDirectory(String directory){
+        ReadFile readFile = new ReadFile();
+        List<String> urls = readFile.readDirectoryToURLs(directory);
+        Find find = new Find();
+        return find.cinqMaxNbIDIn(urls);
+    }
+
+    public void printFirst(){
+        ClassLoader classLoader = getClass().getClassLoader();
+        File fichier = new File(Objects.requireNonNull(classLoader.getResource("logs/20130201-0000.log")).getFile());
+        String directory = fichier.getParent();
+        List<Integer> resultat = firstOfDirectory(directory);
+        resultat.forEach(System.out::println);
+    }
+
 }
