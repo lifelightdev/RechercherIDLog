@@ -42,4 +42,14 @@ public class ReadFileTest {
         }
     }
 
+    @Test
+    void read_directory_to_url_list() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File fichier = new File(Objects.requireNonNull(classLoader.getResource("logs/20130201-0000.log")).getFile());
+        String directory = fichier.getParent();
+        ReadFile readFile = new ReadFile();
+        Integer resultat = readFile.readDirectoryToURLs(directory).size();
+        Assertions.assertThat(resultat).isEqualTo(72000);
+    }
+
 }
