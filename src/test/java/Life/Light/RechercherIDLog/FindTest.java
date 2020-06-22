@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @SpringBootTest
-class RechercherIdLogApplicationTests {
+class FindTest {
 
 	@Test
 	void find_the_ID_690_in_URL() {
