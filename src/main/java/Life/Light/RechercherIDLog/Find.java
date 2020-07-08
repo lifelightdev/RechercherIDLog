@@ -16,10 +16,7 @@ public class Find {
 
     public List<Integer> iDsIn(List<String> urls) {
         List<Integer> resultat = new ArrayList<>();
-        // TODO A revoir avec une lamda
-        for (String url : urls){
-            resultat.add(iDIn(url));
-        }
+        urls.forEach(url->resultat.add(iDIn(url)));
         return resultat;
     }
 
