@@ -18,8 +18,7 @@ public class ReadFile {
         try {
             Scanner myReader = new Scanner(fichier);
             while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                resultat.add(data);
+                resultat.add(myReader.nextLine());
             }
             myReader.close();
         } catch (FileNotFoundException e) {
