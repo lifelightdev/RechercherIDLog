@@ -4,12 +4,14 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Find {
 
     public static final String ID = "id";
+    public static final String DIRECTORY = "logs";
 
     public int iDIn(String url) {
         MultiValueMap<String, String> parameters = UriComponentsBuilder.fromHttpUrl(url).build().getQueryParams();
@@ -52,9 +54,13 @@ public class Find {
 
     public void printFirst(){
         ClassLoader classLoader = getClass().getClassLoader();
-        File fichier = new File(Objects.requireNonNull(classLoader.getResource("logs/20130201-0000.log")).getFile());
-        String directory = fichier.getParent();
-        List<Integer> resultat = firstOfDirectory(directory);
+        File fichier = null;
+        try {
+            fichier = new File(Objects.requireNonNull(classLoader.getResource(DIRECTORY)).toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        List<Integer> resultat = firstOfDirectory(Objects.requireNonNull(fichier).getPath());
         resultat.forEach(System.out::println);
     }
 
