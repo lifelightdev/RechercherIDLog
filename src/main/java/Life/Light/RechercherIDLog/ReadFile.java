@@ -30,9 +30,7 @@ public class ReadFile {
 
     public List<String> readAllToURLs(List<File> fichiers) {
         List<String> resultat = new ArrayList<>();
-        for (File fichier : fichiers){
-            resultat.addAll(readToURLs(fichier));
-        }
+        fichiers.forEach(fichier->resultat.addAll(readToURLs(fichier)));
         return resultat;
     }
 
