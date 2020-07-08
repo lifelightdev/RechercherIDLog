@@ -6,23 +6,23 @@ import java.util.*;
 
 public class ReadFile {
     public List<String> readToURLs(File fichier) {
-        List<String> resultat = new ArrayList<>();
+        List<String> urls = new ArrayList<>();
         try {
             Scanner myReader = new Scanner(fichier);
             while (myReader.hasNextLine()) {
-                resultat.add(myReader.nextLine());
+                urls.add(myReader.nextLine());
             }
             myReader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return resultat;
+        return urls;
     }
 
     public List<String> readAllToURLs(List<File> fichiers) {
-        List<String> resultat = new ArrayList<>();
-        fichiers.forEach(fichier->resultat.addAll(readToURLs(fichier)));
-        return resultat;
+        List<String> urls = new ArrayList<>();
+        fichiers.forEach(fichier->urls.addAll(readToURLs(fichier)));
+        return urls;
     }
 
     public List<String> readDirectoryToURLs(String directory) {
