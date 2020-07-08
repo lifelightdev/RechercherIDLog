@@ -8,9 +8,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Find {
+
+    public static final String ID = "id";
+
     public int iDIn(String url) {
         MultiValueMap<String, String> parameters = UriComponentsBuilder.fromHttpUrl(url).build().getQueryParams();
-        List<String> id = parameters.get("id");
+        List<String> id = parameters.get(ID);
         return Integer.parseInt(id.get(0));
     }
 
